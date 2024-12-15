@@ -3,7 +3,6 @@
 * Add a new service in docker-compose.yml
 
 ```yaml
-version: '2'
 services:
   openvpn:
     cap_add:
@@ -15,6 +14,10 @@ services:
     restart: always
     volumes:
      - ./openvpn-data/conf:/etc/openvpn
+    sysctls:
+     - net.ipv6.conf.all.forwarding=1 
+    devices:
+     - /dev/net/tun
 ```
 
 
